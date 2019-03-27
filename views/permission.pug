@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .w3-card-4
+    h1 Welcome #{user.nickname}
+    img(src=user.picture)
+    h2 User permission profile
+    p This is the content of the current user's permissions.
+    pre
+      code #{permissionProfile}
+      code #{apiCall}
