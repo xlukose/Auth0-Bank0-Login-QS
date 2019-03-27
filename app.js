@@ -12,6 +12,7 @@ var authRouter = require('./routes/auth');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var permissionsRouter = require('./routes/permissions');
+var jwt = require('jsonwebtoken');
 
 dotenv.config();
 dotenv.load();
@@ -29,6 +30,10 @@ var strategy = new Auth0Strategy(
     // accessToken is the token to call Auth0 API (not needed in the most cases)
     // extraParams.id_token has the JSON Web Token
     // profile has all the information from the user
+
+    console.log("ID TOKEN:" + extraParams.id_token);
+    var decoded = jwt.decode(extraParams.id_token);
+    app.set("token", decoded);
     return done(null, profile);
   }
 );
